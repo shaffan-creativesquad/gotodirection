@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#1a1f1a"/>
+  <rect x="80" y="60" width="440" height="300" rx="6" fill="#243024" stroke="#3a7a3a" stroke-width="2"/>
+  <rect x="100" y="80" width="120" height="100" rx="4" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <rect x="240" y="80" width="80" height="50" rx="2" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <rect x="240" y="140" width="80" height="20" rx="2" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <rect x="100" y="200" width="200" height="20" rx="2" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <rect x="100" y="230" width="200" height="20" rx="2" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <rect x="100" y="260" width="200" height="20" rx="2" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <rect x="340" y="200" width="160" height="130" rx="4" fill="#1a2a1a" stroke="#3a7a3a" stroke-width="1"/>
+  <text x="300" y="385" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#5a9a5a" opacity="0.7">Motherboard</text>
+</svg>
