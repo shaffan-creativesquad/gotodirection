@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { eq } from "drizzle-orm";
-import { db } from "@/db";
-import { orders } from "@/db/schema";
+import { getOrder } from "@/lib/store";
 import { PageHero } from "@/components/page-hero";
 import { formatCurrency, formatDate } from "@/lib/format";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = { title: "Order Confirmation" };
 
@@ -16,12 +16,7 @@ export default async function OrderPage({
   params: Promise<{ number: string }>;
 }) {
   const { number } = await params;
-  const rows = await db
-    .select()
-    .from(orders)
-    .where(eq(orders.orderNumber, number))
-    .limit(1);
-  const order = rows[0];
+  const order = getOrder(number);
   if (!order) notFound();
 
   return (
@@ -130,22 +125,18 @@ export default async function OrderPage({
             <dl className="mt-4 space-y-2 text-sm">
               <div className="flex justify-between">
                 <dt className="text-slate-500">Subtotal</dt>
-                <dd className="font-semibold">
-                  {formatCurrency(Number(order.subtotal))}
-                </dd>
+                <dd className="font-semibold">{formatCurrency(order.subtotal)}</dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-slate-500">Shipping</dt>
                 <dd className="font-semibold">
-                  {Number(order.shipping) === 0
-                    ? "FREE"
-                    : formatCurrency(Number(order.shipping))}
+                  {order.shipping === 0 ? "FREE" : formatCurrency(order.shipping)}
                 </dd>
               </div>
               <div className="flex justify-between border-t border-slate-200 pt-3 text-base">
                 <dt className="font-bold text-brand-900">Total paid</dt>
                 <dd className="font-black text-brand-900">
-                  {formatCurrency(Number(order.total))}
+                  {formatCurrency(order.total)}
                 </dd>
               </div>
             </dl>

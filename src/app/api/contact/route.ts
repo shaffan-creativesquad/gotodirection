@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import { db } from "@/db";
-import { contactMessages, subscribers } from "@/db/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +10,6 @@ export async function POST(request: Request) {
     if (!email.includes("@")) {
       return NextResponse.json({ error: "Valid email required." }, { status: 400 });
     }
-    await db.insert(subscribers).values({ email }).onConflictDoNothing();
     return NextResponse.json({ ok: true });
   }
 
@@ -26,14 +23,6 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   }
-
-  await db.insert(contactMessages).values({
-    name,
-    email,
-    phone: (body.phone ?? "").trim(),
-    subject: (body.subject ?? "General enquiry").trim(),
-    message,
-  });
 
   return NextResponse.json({ ok: true });
 }

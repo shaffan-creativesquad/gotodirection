@@ -56,7 +56,7 @@ export const productList = seedProducts.map((p, i) => {
     stock: p.stock,
     upc: p.upc,
     warranty: "1 Year GotoDirect Warranty",
-    imageUrl: cat.imageUrl,
+    imageUrl: cat.imageUrl.replace(/\.jpg$/, ".svg"),
     overview: p.overview,
     highlights: p.highlights as string[],
     specs: p.specs as SpecGroup[],
